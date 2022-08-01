@@ -11,10 +11,6 @@
  */
 
 // ATTEMPT NO. 1 //
-
-const isAnagram = (s,t) => 
-s.split('').sort().join('')  === t.split('').sort().join('') ? true: false
-
 //param: 2 strings, ordered differently; 
 //returns: boolean value, true if they contain all the same letters, false if they don't
 //question: empty string? 
@@ -26,3 +22,7 @@ s.split('').sort().join('')  === t.split('').sort().join('') ? true: false
 //join them afterwards into strings again
 //compare if the two strings are exactly alike
 //return true if they are the same, false if not
+
+const isAnagram = (s,t) => 
+s.split('').sort().join('')  === t.split('').sort().join('') ? true: false
+

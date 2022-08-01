@@ -6,6 +6,18 @@
 */
 
 // ATTEMPT NO. 1 //
+
+//params: an array of numbers
+//returns: boolean value; true if any number is repeated, false if each only appears once
+//question: empty array? number types?
+//example: [1,2,3,1] => true
+
+//make a new array
+//make a loop
+//for each number, check if new array already has it
+//if not, add it, if yes, return true
+//return false if true wasn't returned
+
 var containsDuplicate = function(nums) {
     let arr = [];
     for (let i = 0; i <= nums.length; i++) {
@@ -18,13 +30,27 @@ var containsDuplicate = function(nums) {
     return false;
 };
 
+// ATTEMPT NO. 2 //
 //params: an array of numbers
-//returns: boolean value; true if any number is repeated, false if each only appears once
-//question: empty array? number types?
-//example: [1,2,3,1] => true
+//returns: boolean value; true if any numbers occurs at least twice in the array; false if every number in the array appeared only once
+//ex: Input: nums = [1,2,3,1] => true; Input: nums = [1,2,3,4] => false;
+//pseudo: iterate through array and see if an element was already seen before
+//create a memory 
+//store past elements to memory to reference back to
+    //if number was never seen before, put it in memory
+    //if the number does exist in memory, return true
 
-//make a new array
-//make a loop
-//for each number, check if new array already has it
-//if not, add it, if yes, return true
-//return false if true wasn't returned
+var containsDuplicate = function(nums) {
+    let memory = {};
+    for(let i = 0; i < nums.length; i++) {
+        if(!memory[nums[i]]) {
+            memory[nums[i]] = "exist";
+        } else {
+            return true;
+        } 
+    }
+    return false
+}
+
+//time complexity = O(N)
+//space complexity = O(N)
