@@ -54,3 +54,22 @@ var containsDuplicate = function(nums) {
 
 //time complexity = O(N)
 //space complexity = O(N)
+
+// ATTEMPT NO. 3 //
+//params: an array of numbers
+//returns: boolean value; true if any numbers occurs at least twice in the array; false if every number in the array appeared only once
+//ex: Input: nums = [1,2,3,1] => true; Input: nums = [1,2,3,4] => false;
+//pseudo: 
+//sort input array (arrays.sort uses two sorting algos that are both O(n log n));
+//iterate though array to compare element at current index to the one before it
+//this solution takes up less memory than the one before because there is no memory/storage of data
+//may take longer
+var containsDuplicate = function(nums) {
+    nums.sort((a,b) => {return a-b}); 
+    for (let i = 0; i < nums.length; i++) {
+        if (i > 0 && nums[i -1] == nums[i]) {
+            return true;
+        }
+    }
+    return false
+}
