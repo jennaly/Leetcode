@@ -73,3 +73,11 @@ var containsDuplicate = function(nums) {
     }
     return false
 }
+
+
+// ATTEMPT NO.4 //
+var containsDuplicate = function (nums) {
+    //pass array into a Set(), which only contains UNIQUE VALUES OF ANY TYPE, and compare its size to the initial array
+    return new Set(nums).size !== nums.length;
+    //returns true if there is a difference in sizes, false if they have the same number of elements
+}
