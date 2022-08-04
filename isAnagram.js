@@ -26,3 +26,48 @@
 const isAnagram = (s,t) => 
 s.split('').sort().join('')  === t.split('').sort().join('') ? true: false
 
+//not the bests, because time complexity: O(nlogn)
+
+
+// ATTEMPT 2 //
+//params: 2 strings s and t
+//returns: boolean value - true if s and t have the same letters, false if not
+//questions: any spaces in the string? case sensitive? 
+//example: isAnagram('leon', 'noel') => true
+//pseudo: 
+//check if strings are the same length => exit if not, saves time 
+//make a map and iterate through the first string, storing each letter and their frequency
+//iterate through the second string, if there is a letter in the second string that isn't in the first, exit
+//if it is in the first string, decrement it in the map
+//if there is any his[key] value that is NOT 0, return false 
+//otherwise return true
+var isAnagram = function(s,t) {
+    if (s.length !== t.length) {
+        return false
+    }
+    let hist = {};
+    for (let i = 0; i < s.length; i++) {
+        if (hist[s[i]]) {
+            hist[s[i]]++
+        } else {
+            hist[s[i]] = 1;
+        }
+    }
+
+    for (let i = 0; i < t.length; i++) {
+        if (!hist[t[i]]) {
+            return false
+        } else {
+            (hist[t[i]])--; 
+        }
+    }
+
+    for (let key in hist) {
+        if (hist[key]) {
+            return false
+        }
+    }
+    return true;
+}
+
+//time complexity: O(3n) => O(n)
