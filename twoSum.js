@@ -37,3 +37,29 @@ let twoSum = function(nums, target) {
     return [];  
 }
 
+//SIMILAR PROMPT
+//same concept but only return the numbers in the array that add up to the target sum
+//params: an integer array, a target number
+//returns: two numbers in the array that add up to the target number
+//ex: [1,2,3,4], 4 => [1,3]
+//pseudo: 
+//make an empty hash map
+//iterate through the nums array
+//init variable for addend (target num - current num in nums array)
+//if addend is already in the map, return [addend, current num]
+//if not, store the current num in the map => hash[current num] = true
+//return empty array if no addend found
+
+
+let twoNumberSum = function (array, target) {
+    const hash = {};
+    for (const num of array) {
+        const addend = target - num;
+        if (addend in hash) {
+            return [addend, num]
+        } else {
+            hash[num] = true;
+        }
+    }
+    return []
+}
