@@ -52,3 +52,17 @@ var majorityElement = function(nums) {
     }
 
 };
+
+// refactored
+
+var majorityElement = function(nums) {
+    if (!nums.length) return 0;
+
+    const hash = {};
+
+    for (const num of nums) {
+        hash[num] = hash[num] + 1 || 1;
+        if (hash[num] > nums.length / 2) return num
+    }
+
+};
