@@ -23,26 +23,34 @@
 //   no spaces?
 
 //   iterate through each character in the given string
-//   calculate the ASCII code of the new character by adding the key to the ASCII code of the current character
-//   if the ASCII code of the new character is greater than 122, get the remainder of the division of the new character by 122 (122 is the code for z)
-//   add the remainder to 96 (the code for a)
+//   calculate the ASCII code of the new character by adding the key to the ASCII code of the current character % 26
+//   if the ASCII code of the new character is greater than 122, subtract 26 from the character code
+//   get the new character from the new character code by using String.fromCharCode();
 //   map the character to a new array
 //   join the characters in the array and return as a string
 
 function caesarCipherEncryptor(string, key) {
     if (!string.length) return "";
-
-    const newString = [...string].map(char => 
-        {
-            let newChar = char.charCodeAt(0) + key;
-
-            if (newChar > 122) {
-                newChar = 96 + (newChar % 122);
-            }
-
-            return String.fromCharCode(newChar);
-        })
-        .join("")
-
-    return newString;
+   
+     if (key === 0) return string;
+   
+     const newString = [...string].map(char => 
+         {
+             let newChar = char.charCodeAt(0) + (key % 26);
+   
+             if (newChar > 122) {
+                 newChar -= 26; 
+                
+                // If newChar is greater than 122, it means that the new character is not in the alphabet, and it needs to be "wrapped" around the alphabet.
+                // To "wrap" the new character around the alphabet, 26 is subtracted from newChar. 
+                // This has the effect of "moving" the new character 26 positions to the left in the alphabet, which is equivalent to wrapping it around the alphabet.
+             }
+   
+             return String.fromCharCode(newChar);
+         })
+         .join("")
+   
+     return newString;
 }
+
+//   this solution has a time complexity of O(n) where n is the length of the string
